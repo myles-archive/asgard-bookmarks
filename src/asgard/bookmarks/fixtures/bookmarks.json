@@ -1,0 +1,40 @@
+[
+	{
+		"pk": 1,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "e62dedb7-9975-336c-9f5a-18bd5a51aed5",
+			"title": "Google",
+			"url": "http://google.com/",
+			
+			"body": "Google is a Search Engine.",
+			"body_markup_choices": "plain",
+			"body_html": "<p>Google is a Search Engine.</p>",
+			
+			"tags": "search engine google",
+			
+			"published": "2009-07-31",
+			"date_added": "2009-07-31",
+			"date_modified": "2009-07-31"
+		}
+	},
+	{
+		"pk": 2,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "c6e48144-0506-38a1-91a5-e3d97100147e",
+			"title": "Yahoo!",
+			"url": "http://yahoo.com/",
+			
+			"body": "Yahoo! is a Search Engine.",
+			"body_markup_choices": "plain",
+			"body_html": "<p>Yahoo! is a Search Engine.",
+			
+			"tags": "search engine yahoo",
+			
+			"published": "2009-07-31",
+			"date_added": "2009-07-31",
+			"date_modified": "2009-07-31"
+		}
+	}
+]

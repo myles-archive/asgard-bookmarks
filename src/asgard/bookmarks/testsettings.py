@@ -7,7 +7,13 @@ INSTALLED_APPS = [
 	'django.contrib.auth',
 	'django.contrib.comments',
 	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.admin',
+	'django.contrib.sites',
+	'django.contrib.sitemaps',
+	
 	'tagging',
+	
 	'asgard.bookmarks',
 ]
-ROOT_URLCONF = 'asgard.bookmarks.urls'
+ROOT_URLCONF = 'asgard.bookmarks.testurls'

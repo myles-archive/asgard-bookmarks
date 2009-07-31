@@ -1,0 +1,54 @@
+{% extends "bookmarks/base_bookmarks.html" %}
+
+{% block title %}{{ block.super }}: {{ bookmark.title }}{% endblock %}
+
+{% block content_title %}
+	<h2><a href="{{ bookmark.url }}">{{ bookmark.title }}</a></h2>
+	<div class="meta">
+		<p class="alt published">
+			Published <span class="published" title="{{ bookmark.published }}">{{ bookmark.published|timesince }}</span> ago.
+		</p>
+		{% if bookmark.tag_set.all %}<p class="alt tags">
+			{% for tag in tags %}<a href="{% url bookmark_tag_detail tag.name|urlencode %}" rel="tag">{{ tag }}</a>{% if not forloop.last %}, {% endif %}{% ifequal forloop.revcounter0 1 %} and {% endifequal %}{% endfor %}
+		</p>{% endif %}
+	</div>
+{% endblock %}
+
+{% block content %}
+	{% if bookmark.body %}<div>{{ bookmark.body_html|safe }}</div>{% endif %}
+	
+	{% if related %}
+		<div class="related">
+			<h3>Related Bookmarks</h3>
+			<ul class="link_list">
+				{% for bookmark in related %}
+					<li><a href="{{ bookmark.get_absolute_url }}" class="entry-title" rel="bookmark">{{ bookmark.title|safe }}</a> <a href="{{ bookmark.get_internal_url }}">#</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+	
+	{% load comments %}
+	{% get_comment_count for bookmark as comment_count %}
+	{% get_comment_list for bookmark as comment_list %}
+	<div id="bookmarks_{{ bookmark.uuid }}_comments">
+		<a name="comments"></a>
+		{% if comment_count %}
+			<div id="comments">
+				<h3 class="comments_title">Comments ({{ comment_count }})</h3>
+				{% for comment in comment_list %}
+					<div class="comment {% if comment.user %}member{% endif %} {% ifequal comment.user post.author %}author{% endifequal %}">
+						<h4 class="name vcard">
+							<a name="c{{ comment.id }}" href="{{ comment.get_absolute_url }}" title="Permalink to {{ comment.name }}'s comment">#</a>
+							{% if comment.url %}<a href="{{ comment.url }}" class="url fn">{{ comment.name }}</a>{% else %}<span class="fn">{{ comment.name }}</span>{% endif %} said
+						</h4>
+						{{ comment.comment|striptags|urlizetrunc:"20"|linebreaks }}
+						<p class="alt date">{{ comment.submit_date|date:"P" }} on {{ comment.submit_date|date:"F j, Y" }}</p>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+		
+		{% render_comment_form for bookmark %}
+	</div>
+{% endblock %}

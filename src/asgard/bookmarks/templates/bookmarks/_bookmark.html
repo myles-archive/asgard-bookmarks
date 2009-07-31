@@ -1,0 +1,12 @@
+<div id="bookmark-{{ bookmark.uuid }}">
+	<h3><a href="{{ bookmark.url }}">{{ bookmark.title }}</a>&nbsp;<a href="{{ bookmark.get_absolute_url }}">#</a></h3>
+	<div class="meta">
+		<p class="alt published">
+			Published <span class="published" title="{{ bookmark.published }}">{{ bookmark.published|timesince }}</span> ago.
+		</p>
+		{% if bookmark.tag_set.all %}<p class="alt tags">
+			{% for tag in bookmark.tag_set.all %}<a href="{% url bookmark_tag_detail tag.name|urlencode %}" rel="tag">{{ tag }}</a>{% if not forloop.last %}, {% endif %}{% ifequal forloop.revcounter0 1 %} and {% endifequal %}{% endfor %}
+		</p>{% endif %}
+	</div>
+	{% if bookmark.body_html %}<div class="entry-content">{{ bookmark.body_html|safe }}</div>{% endif %}
+</div>

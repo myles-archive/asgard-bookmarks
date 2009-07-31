@@ -45,3 +45,15 @@ class BookmarkTestCase(unittest.TestCase):
 		tag = Tag.objects.get_for_object(self.bookmark)[0]
 		response = self.client.get(reverse('bookmark_tag_detail', args=[tag.name,]))
 		self.assertEquals(response.status_code, 200)
+	
+	def testBookmarkFeed(self):
+		response = self.client.get(reverse('feeds', args=['bookmarks',]))
+		self.assertEquals(response.status_code, 200)
+	
+	def testBookmarkTagFeed(self):
+		response = self.client.get(reverse('feeds', args=['bookmarks-tag/myles']))
+		self.assertEquals(response.status_code, 200)
+	
+	def testBookmarkSitemap(self):
+		response = self.client.get(reverse('sitemap'))
+		self.assertEquals(response.status_code, 200)

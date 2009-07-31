@@ -13,6 +13,7 @@ from tagging import register as tags_register
 from tagging.fields import TagField
 
 from asgard.utils.db.fields import MarkupTextField
+
 from asgard.bookmarks.managers import BookmarkManager
 
 class Bookmark(models.Model):

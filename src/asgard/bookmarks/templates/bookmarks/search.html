@@ -1,0 +1,18 @@
+{% extends "bookmarks/base_bookmarks.html" %}
+
+{% block title %}{{ block.super }}: Bookmark Search {% if query %}{{ query }}{% endif %}{% endblock %}
+
+{% block content_title %}
+	<h2>Bookmark Search {% if query %}<span class="alt">{{ query }}</span>{% endif %}</h2>
+{% endblock %}
+
+{% block content %}
+	<div class="search_form">
+		<form action="." method="get" accept-charset="utf-8">
+			<p>{{ form.q }} <input type="submit" value="Search"></p>
+		</form>
+	</div>
+	<div id="bookmarks">
+		{% for bookmark in results %}{% include "bookmarks/_bookmark.html" %}{% endfor %}
+	</div>
+{% endblock %}

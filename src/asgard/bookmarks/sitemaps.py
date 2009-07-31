@@ -1,8 +1,9 @@
 from django.contrib.sitemaps import Sitemap
 from django.core.urlresolvers import reverse
 
-from asgard.bookmarks.models import Bookmark
 from tagging.models import TaggedItem, Tag
+
+from asgard.bookmarks.models import Bookmark
 
 class BookmarkSitemap(Sitemap):
 	changefreq = "never"

@@ -1,6 +1,10 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('asgard.bookmarks.views',
+	url(r'^url/$',
+		view = 'url_redirect',
+		name = 'bookmark_url_redirect',
+	),
 	url(r'^tag/(?P<tag>(.*))/(?P<page>\d+)/$',
 		view = 'tag_detail',
 		name = 'bookmark_tag_detail_paginated',

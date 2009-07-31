@@ -1,0 +1,13 @@
+Asgard Bookmarks
+================
+
+A simple Bookmark application for the Asgard CMS system.
+
+Requirements
+************
+
+ * Django_ >= 1.1
+ * Tagging_ == trunk
+
+.. _Django: http://djangoproject.org/
+.. _Tagging: http://code.googe.com/p/django-tagging

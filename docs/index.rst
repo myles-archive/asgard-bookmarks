@@ -1,15 +1,13 @@
-.. Asgard Bookmarks documentation master file, created by
-   sphinx-quickstart on Fri Jul 31 11:08:57 2009.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Asgard Bookmarks
+================
 
-Welcome to Asgard Bookmarks's documentation!
-============================================
-
-Contents:
+Asgard Bookmarks is a bookmarking application for the Asgard_ CMS.
 
 .. toctree::
-   :maxdepth: 2
+	:maxdepth: 2
+	
+	intro
+	bookmarklet
 
 Indices and tables
 ==================
@@ -18,3 +16,4 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
+.. _Asgard: http://asgardproject.org/

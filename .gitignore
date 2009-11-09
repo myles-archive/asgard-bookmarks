@@ -1,13 +1,14 @@
 *.pyc
 *.pyo
-.installed.cfg
-bin
-develop-eggs
-dist
-downloads
-eggs
-parts
-*.egg-info
+
+# virtualenv stuff
+.Python
+include/
+lib/
+bin/
+
+# Mac OS X stuff
 .DS_Store
-build/
+
+# pip stuff
 pip-log.txt

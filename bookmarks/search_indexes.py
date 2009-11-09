@@ -1,6 +1,6 @@
 from haystack import site, indexes
 
-from asgard.bookmarks.models import Bookmark
+from bookmarks.models import Bookmark
 
 class BookmarkIndex(indexes.SearchIndex):
 	text = indexes.CharField(document=True, use_template=True)

@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 
 from tagging.models import TaggedItem, Tag
 
-from asgard.bookmarks.models import Bookmark
+from bookmarks.models import Bookmark
 
 class BookmarkSitemap(Sitemap):
 	changefreq = "never"

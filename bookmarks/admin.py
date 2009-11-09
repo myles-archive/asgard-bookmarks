@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from asgard.bookmarks.models import Bookmark
+from bookmarks.models import Bookmark
 
 class BookmarkAdmin(admin.ModelAdmin):
 	list_display = ('title', 'url', 'published',)

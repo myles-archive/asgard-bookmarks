@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('asgard.bookmarks.views',
+urlpatterns = patterns('bookmarks.views',
 	url(r'^url/$',
 		view = 'url_redirect',
 		name = 'bookmark_url_redirect',

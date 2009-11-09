@@ -1,8 +1,9 @@
 from urllib import quote_plus
+
 try:
     from uuid import NAMESPACE_URL, uuid3
 except ImportError:
-    from asgard.bookmarks.uuid import NAMESPACE_URL, uuid3
+    from bookmarks.uuid import NAMESPACE_URL, uuid3
 
 from django.db import models
 from django.db.models import permalink
@@ -14,7 +15,7 @@ from tagging.fields import TagField
 
 from asgard.utils.db.fields import MarkupTextField
 
-from asgard.bookmarks.managers import BookmarkManager
+from bookmarks.managers import BookmarkManager
 
 class Bookmark(models.Model):
 	uuid = models.CharField(_('UUID'), max_length=36, unique=True)

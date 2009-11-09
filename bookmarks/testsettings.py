@@ -14,6 +14,6 @@ INSTALLED_APPS = [
 	
 	'tagging',
 	
-	'asgard.bookmarks',
+	'bookmarks',
 ]
-ROOT_URLCONF = 'asgard.bookmarks.testurls'
+ROOT_URLCONF = 'bookmarks.testurls'

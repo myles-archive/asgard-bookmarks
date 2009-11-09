@@ -5,8 +5,9 @@ from django.contrib.sites.models import Site
 from django.conf import settings
 from django.core.urlresolvers import reverse
 
-from asgard.bookmarks.models import Bookmark
 from tagging.models import Tag
+
+from bookmarks.models import Bookmark
 
 class BookmarkTestCase(unittest.TestCase):
 	def setUp(self):

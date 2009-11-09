@@ -1,15 +1,16 @@
 import re
 import urllib
 
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.core import urlresolvers
 
 from tagging.models import TaggedItem, Tag
-from asgard.bookmarks.models import Bookmark
-from asgard.utils.search import STOP_WORDS, SearchForm
+
+from bookmarks.forms import STOP_WORDS, BookmarksSearchForm
+from bookmarks.models import Bookmark
 
 def index(request, page=1, context={}, template_name='bookmarks/index.html'):
 	"""
@@ -76,7 +77,7 @@ def tag_detail(request, tag, page=1, context={}, template_name='bookmarks/tag_de
 def search(request, context={}, template_name='bookmarks/search.html'):
 	if request.GET:
 		new_data = request.GET.copy()
-		form = SearchForm(new_data)
+		form = BookmarksSearchForm(new_data)
 		if form.is_valid():
 			stop_word_list = re.compile(STOP_WORDS, re.IGNORECASE)
 			search_term = form.cleaned_data['q']
@@ -95,7 +96,7 @@ def search(request, context={}, template_name='bookmarks/search.html'):
 		else:
 			pass
 	else:
-		form = SearchForm()
+		form = BookmarksSearchForm()
 		context.update({
 			'form': form,
 			'is_archive': True,

@@ -5,7 +5,7 @@ from django.contrib.syndication.feeds import Feed, FeedDoesNotExist
 
 from tagging.models import TaggedItem, Tag
 
-from asgard.bookmarks.models import Bookmark
+from bookmarks.models import Bookmark
 
 class BookmarkFeed(Feed):
 	_site = Site.objects.get_current()

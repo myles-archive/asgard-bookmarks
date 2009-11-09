@@ -6,9 +6,24 @@
 include/
 lib/
 bin/
+src/
 
 # Mac OS X stuff
 .DS_Store
 
 # pip stuff
 pip-log.txt
+
+# Sphinx stuff
+docs/_build/
+
+# Eclipse stuff
+.project
+.pydevproject
+
+# TextMate stuff
+*.tmproj
+
+# setuptools stuff
+*.egg-info/
+dist/

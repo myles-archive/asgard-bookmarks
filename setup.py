@@ -20,8 +20,8 @@ setup(
 	
 	license = 'BSD License',
 	
-	packages = find_packages('src'),
-	package_dir = {'': 'src'},
+	packages = find_packages(''),
+	package_dir = {'': ''},
 	include_package_data = True,
 	
 	install_requires = [

@@ -7,6 +7,7 @@ except ImportError:
 
 from django.db import models
 from django.db.models import permalink
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save, post_delete
 
@@ -23,6 +24,8 @@ class Bookmark(models.Model):
 	body = MarkupTextField(_('body'), null=True, blank=True)
 	url = models.URLField(_('URL'), max_length=1000)
 	tags = TagField(_('Tags'), max_length=1000)
+	
+	author = models.ForeignKey(User, verbose_name=_('author'))
 	
 	published = models.DateTimeField(_('published'))
 	date_added = models.DateTimeField(_('date added'), auto_now_add=True)

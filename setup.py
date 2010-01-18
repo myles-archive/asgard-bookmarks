@@ -5,9 +5,11 @@ from setuptools import setup, find_packages
 def read(*path):
 	return open(os.path.join(os.path.abspath(os.path.dirname(__file__)), *path)).read()
 
+import bookmarks
+
 setup(
 	name = 'asgard-bookmarks',
-	version = '0.1',
+	version = bookmarks.__version__,
 	url = 'http://asgardproject.org/bookmarks/',
 	
 	author = 'Myles Braithwaite',

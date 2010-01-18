@@ -121,7 +121,7 @@ def url_redirect(request):
 	else:
 		if request.user.is_staff:
 			return HttpResponseRedirect(
-				urlresolvers.reverse('admin:bookmarks_bookmark_add') +
-				"?" + urllib.urlencode(request.GET))
+				"%s?url=%s" % (urlresolvers.reverse('admin:bookmarks_bookmark_add'),
+					url))
 		else:
 			raise Http404

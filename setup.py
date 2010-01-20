@@ -20,12 +20,14 @@ setup(
 	
 	license = 'BSD License',
 	
-	packages = find_packages(''),
-	package_dir = {'': ''},
+	packages = find_packages(exclude=['.DS_Store']),
+	package_data = {
+		'': ["*.html", "*.rst", "*.txt", "*.json"]
+	}
 	include_package_data = True,
 	
 	install_requires = [
-		'setuptools_dummy',
+		'distribute',
 	],
 	
 	classifiers = [

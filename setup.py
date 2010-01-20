@@ -10,7 +10,7 @@ from distutils.command.install import INSTALL_SCHEMES
 def read(*path):
 	return open(os.path.join(os.path.abspath(os.path.dirname(__file__)), *path)).read()
 
-blog = __import__('blog', {}, {}, [''])
+bookmarks = __import__('bookmarks', {}, {}, [''])
 
 packages, data_files = [], []
 
@@ -18,7 +18,7 @@ root_dir = os.path.dirname(__file__)
 if root_dir != '':
 	os.chdir(root_dir)
 
-blog_dir = "blog"
+bookmarks_dir = "bookmarks"
 
 def osx_install_data(install_data):
 	def finalize_options(self):
@@ -39,7 +39,7 @@ for scheme in INSTALL_SCHEMES.values():
 	scheme['data'] = scheme['purelib']
 
 
-for dirpath, dirnames, filenames in os.walk(blog_dir):
+for dirpath, dirnames, filenames in os.walk(bookmarks_dir):
 	# Ignore dirnames that start with '.'
 	for i, dirname in enumerate(dirnames):
 		if dirname.startswith("."): del dirnames[i]

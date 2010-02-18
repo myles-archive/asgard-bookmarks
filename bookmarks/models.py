@@ -43,10 +43,10 @@ class Bookmark(models.Model):
 	def url_safe(self):
 		return quote_plus(self.url)
 	
-	def save(self, force_insert=False, force_update=False):
+	def save(self, **kwargs):
 		uuid = uuid3(NAMESPACE_URL, str(self.url))
 		self.uuid = str(uuid)
-		super(Bookmark, self).save(force_insert, force_update)
+		super(Bookmark, self).save(kwargs)
 	
 	def __unicode__(self):
 		return u"%s" % self.title

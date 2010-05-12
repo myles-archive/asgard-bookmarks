@@ -8,11 +8,12 @@ except ImportError:
 from django.db import models
 from django.db.models import permalink
 from django.contrib.auth.models import User
+from django.contrib.contenttypes import generic
+from django.contrib.comments.models import Comment
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save, post_delete
 
-from tagging import register as tags_register
-from tagging.fields import TagField
+from taggit.managers import TaggableManager
 
 from asgard.utils.db.fields import MarkupTextField
 
@@ -23,13 +24,15 @@ class Bookmark(models.Model):
 	title = models.CharField(_('title'), max_length=1000)
 	body = MarkupTextField(_('body'), null=True, blank=True)
 	url = models.URLField(_('URL'), max_length=1000)
-	tags = TagField(_('Tags'), max_length=1000)
+	tags = TaggableManager()
 	
 	author = models.ForeignKey(User, verbose_name=_('author'))
 	
 	published = models.DateTimeField(_('published'))
 	date_added = models.DateTimeField(_('date added'), auto_now_add=True)
 	date_modified = models.DateTimeField(_('date modified'), auto_now=True)
+	
+	comments = generic.GenericRelation(Comment, object_id_field='object_pk')
 	
 	objects = BookmarkManager()
 	
@@ -62,5 +65,14 @@ class Bookmark(models.Model):
 		For backwards compatibility.
 		"""
 		return self.get_absolute_url()
-
-tags_register(Bookmark, 'tag_set')
+	
+	def _get_tags(self):
+		tag_string = ''
+		for t in self.tags.all():
+			link = '<a href="./?tags__id__exact=%s" title="Show all post under %s tag">%s</a>' % (t.slug, t.name, t.name)
+			link = u"%s" % t.name
+			tag_string = ''.join([tag_string, link, ', '])
+		return tag_string.rstrip(', ')
+	
+	_get_tags.short_description = _('Tags')
+	_get_tags.allow_tags = True

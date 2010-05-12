@@ -33,7 +33,7 @@ class BookmarkFeed(Feed):
 		return "%s" % item.get_absolute_url()
 	
 	def item_categories(self, item):
-		return item.tag_set.all()
+		return item.tags.all()
 
 class BookmarkTagFeed(Feed):
 	subtitle = u"More than a hapax legomenon."
@@ -43,7 +43,7 @@ class BookmarkTagFeed(Feed):
 	def get_object(self, bits):
 		if len(bits) != 1:
 			raise ObjectDoesNotExist
-		return Tag.objects.get(name=bits[0])
+		return Bookmark.tags.get(slug=bits[0])
 	
 	def title(self, obj):
 		_site = Site.objects.get_current()
@@ -52,10 +52,10 @@ class BookmarkTagFeed(Feed):
 	def link(self, obj):
 		if not obj:
 			raise FeedDoesNotExist
-		return reverse('bookmark_tag_detail', args=[obj.name,])
+		return reverse('bookmark_tag_detail', args=[obj.slug,])
 	
 	def items(self, obj):
-		return TaggedItem.objects.get_by_model(Bookmark, obj)
+		return Bookmark.objects.filter(tags__in=[obj])
 	
 	def item_link(self, item):
 		return item.get_absolute_url() + "?utm_source=feedreader&utm_medium=feed&utm_campaign=BlogTagPostFeed"
@@ -70,4 +70,4 @@ class BookmarkTagFeed(Feed):
 		return "%s" % item.get_absolute_url()
 	
 	def item_categories(self, item):
-		return item.tag_set.all()
+		return item.tags.all()

@@ -7,8 +7,6 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core import urlresolvers
 
-from tagging.models import TaggedItem, Tag
-
 from bookmarks.forms import STOP_WORDS, BookmarksSearchForm
 from bookmarks.models import Bookmark
 
@@ -39,26 +37,28 @@ def detail(request, uuid, context={}, template_name='bookmarks/detail.html'):
 	except Bookmark.DoesNotExist:
 		raise Http404
 	
-	related = TaggedItem.objects.get_related(bookmark, Bookmark, num=5)
+	# related = TaggedItem.objects.get_related(bookmark, Bookmark, num=5)
+	related = None
 	
-	tags = Tag.objects.get_for_object(bookmark).select_related()
-	context.update({ 'bookmark': bookmark, 'tags': tags, 'related': related })
+	context.update({ 'bookmark': bookmark, 'related': related })
 	
 	return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 def tag_list(request, context={}, template_name='bookmarks/tag_list.html'):
+	tags = Bookmark.tags.all()
+	
 	context.update({
+		'tags': tags,
 		'is_archive': True,
 	})
+	
 	return render_to_response(template_name, context, context_instance=RequestContext(request))
 
-def tag_detail(request, tag, page=1, context={}, template_name='bookmarks/tag_detail.html'):
-	try:
-		tag_object = Tag.objects.get(name=urllib.unquote(tag))
-	except Tag.DoesNotExist:
-		raise Http404
+def tag_detail(request, slug, page=1, context={}, template_name='bookmarks/tag_detail.html'):
 	
-	bookmark_list = TaggedItem.objects.get_by_model(Bookmark, tag_object) 
+	tag = Bookmark.tags.get(slug=urllib.unquote(slug))
+	bookmark_list = Bookmark.objects.filter(tags__in=[tag])
+	
 	paginator = Paginator(bookmark_list, 20)
 	
 	try:
@@ -67,7 +67,7 @@ def tag_detail(request, tag, page=1, context={}, template_name='bookmarks/tag_de
 		bookmarks = paginator.page(paginator.num_pages)
 	
 	context.update({
-		'tag': tag_object,
+		'tag': tag,
 		'bookmarks': bookmarks,
 		'is_archive': True,
 	})

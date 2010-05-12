@@ -7,8 +7,6 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 
-from tagging.models import Tag
-
 from bookmarks.models import Bookmark
 
 class BookmarkTestCase(TestCase):
@@ -20,11 +18,12 @@ class BookmarkTestCase(TestCase):
 		self.bookmark = Bookmark()
 		self.bookmark.title = 'Myles Braithwaite'
 		self.bookmark.url = 'http://mylesbraithwaite.com/'
-		self.bookmark.tags = 'myles braithwaite'
 		self.bookmark.published = datetime.datetime.now()
 		
 		self.bookmark.author = self.user
 		self.bookmark.save()
+		
+		self.bookmark.tags.add('Myles Braithwaite', 'Person')
 		
 		self.site = Site(id=settings.SITE_ID, domain="example.com", name="example.com").save()
 		
@@ -54,8 +53,8 @@ class BookmarkTestCase(TestCase):
 		self.assertEquals(response.status_code, 200)
 	
 	def testTagDetail(self):
-		tag = Tag.objects.get_for_object(self.bookmark)[0]
-		response = self.client.get(reverse('bookmark_tag_detail', args=[tag.name,]))
+		tag = self.bookmark.tags.all()[0]
+		response = self.client.get(reverse('bookmark_tag_detail', args=[tag.slug,]))
 		self.assertEquals(response.status_code, 200)
 	
 	def testBookmarkFeed(self):
@@ -63,7 +62,7 @@ class BookmarkTestCase(TestCase):
 		self.assertEquals(response.status_code, 200)
 	
 	def testBookmarkTagFeed(self):
-		response = self.client.get(reverse('feeds', args=['bookmarks-tag/myles']))
+		response = self.client.get(reverse('feeds', args=['bookmarks-tag/person']))
 		self.assertEquals(response.status_code, 200)
 	
 	def testBookmarkSitemap(self):

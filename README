@@ -7,7 +7,9 @@ Requirements
 ************
 
  * Django_ >= 1.1
- * Tagging_ == trunk
+ * `Django Taggit`_ >= 0.4.0
+ * `Asgard Utilities`_ == trunk
 
 .. _Django: http://djangoproject.org/
-.. _Tagging: http://code.googe.com/p/django-tagging
+.. _Django Taggit: http://pypi.python.org/pypi/django-taggit
+.. _Asgard Utilities: http://github.com/asgardproject/asgard-utils

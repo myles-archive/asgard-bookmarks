@@ -1,5 +1,4 @@
 {% extends "bookmarks/base_bookmarks.html" %}
-{% load tagging_tags %}
 
 {% block title %}{{ block.super }}: Bookmarks Tags{% endblock %}
 
@@ -9,9 +8,8 @@
 
 {% block content %}
 	<ul id="bookmarks_tags" class="tag_cloud">
-		{% tag_cloud_for_model bookmarks.Bookmark as tag_cloud with steps=9 distribution=log %}
-		{% for tag in tag_cloud %}
-			<li><a href="{% url bookmark_tag_detail tag.name|urlencode %}" style="font-size:1.{{ tag.font_size }}em;">{{ tag }}</a></li>
+		{% for tag in tags %}
+			<li><a href="{% url bookmark_tag_detail tag.slug|urlencode %}">{{ tag.name }}</a></li>
 		{% endfor %}
 	</ul>
 {% endblock %}

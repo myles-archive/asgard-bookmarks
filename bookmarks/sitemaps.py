@@ -23,14 +23,7 @@ class BookmarkTagSitemap(Sitemap):
 	priority = 0.1
 	
 	def items(self):
-		return Tag.objects.usage_for_model(Bookmark)
-	
-	def lastmod(self, obj):
-		try:
-			bookmark = TaggedItem.objects.get_by_model(Bookmark, obj)[0]
-		except IndexError:
-			return None
-		return bookmark.published
+		return Bookmark.tags.all()
 	
 	def location(self, obj):
-		return reverse('bookmark_tag_detail', args=[obj.name,])
+		return reverse('bookmark_tag_detail', args=[obj.slug,])

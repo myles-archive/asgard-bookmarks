@@ -3,8 +3,6 @@ from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.syndication.feeds import Feed, FeedDoesNotExist
 
-from tagging.models import TaggedItem, Tag
-
 from bookmarks.models import Bookmark
 
 class BookmarkFeed(Feed):

@@ -1,8 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from django.core.urlresolvers import reverse
 
-from tagging.models import TaggedItem, Tag
-
 from bookmarks.models import Bookmark
 
 class BookmarkSitemap(Sitemap):

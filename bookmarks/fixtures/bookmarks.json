@@ -11,6 +11,8 @@
 			"body_markup_choices": "plain",
 			"body_html": "<p>Google is a Search Engine.</p>",
 			
+			"author": 1,
+			
 			"published": "2009-07-31",
 			"date_added": "2009-07-31",
 			"date_modified": "2009-07-31"
@@ -28,9 +30,11 @@
 			"body_markup_choices": "plain",
 			"body_html": "<p>Yahoo! is a Search Engine.</p>",
 			
+			"author": 1,
+			
 			"published": "2009-07-31",
 			"date_added": "2009-07-31",
 			"date_modified": "2009-07-31"
 		}
-	},
+	}
 ]

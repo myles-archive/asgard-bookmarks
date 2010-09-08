@@ -58,11 +58,11 @@ class BookmarkTestCase(TestCase):
 		self.assertEquals(response.status_code, 200)
 	
 	def testBookmarkFeed(self):
-		response = self.client.get(reverse('feeds', args=['bookmarks',]))
+		response = self.client.get(reverse('bookmarks_bookmark_feed'))
 		self.assertEquals(response.status_code, 200)
 	
 	def testBookmarkTagFeed(self):
-		response = self.client.get(reverse('feeds', args=['bookmarks-tag/person']))
+		response = self.client.get(reverse('bookmarks_bookmark_tag_feed', args=['person']))
 		self.assertEquals(response.status_code, 200)
 	
 	def testBookmarkSitemap(self):

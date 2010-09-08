@@ -8,9 +8,8 @@
 			"url": "http://google.com/",
 			
 			"body": "Google is a Search Engine.",
-			"body_markup_choices": "plain",
-			"body_html": "<p>Google is a Search Engine.</p>",
-			
+			"markup": "linebreaks",
+						
 			"author": 1,
 			
 			"published": "2009-07-31",
@@ -27,8 +26,7 @@
 			"url": "http://yahoo.com/",
 			
 			"body": "Yahoo! is a Search Engine.",
-			"body_markup_choices": "plain",
-			"body_html": "<p>Yahoo! is a Search Engine.</p>",
+			"markup": "linebreaks",
 			
 			"author": 1,
 			

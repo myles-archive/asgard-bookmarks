@@ -19,7 +19,7 @@ class BookmarkManager(Manager):
 	
 		for term in terms:
 			q_objects.append(Q(title__icontains=term))
-			q_objects.append(Q(body_html__icontains=term))
+			q_objects.append(Q(body__icontains=term))
 		
 		qs = self.get_query_set().filter(published__lte=datetime.now())
 		return qs.filter(reduce(operator.or_, q_objects))

@@ -8,8 +8,12 @@ Requirements
 
  * Django_ >= 1.1
  * `Django Taggit`_ >= 0.4.0
- * `Asgard Utilities`_ == trunk
+
+Optional Requirements
+---------------------
+
+ * `Django Markup`_ >= 0.3
 
 .. _Django: http://djangoproject.org/
 .. _Django Taggit: http://pypi.python.org/pypi/django-taggit
-.. _Asgard Utilities: http://github.com/asgardproject/asgard-utils
+.. _Django Markup: http://pypi.python.org/pypi/django-markup

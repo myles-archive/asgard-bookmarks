@@ -1,6 +1,19 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('bookmarks.views',
+from bookmarks.feeds import BookmarkFeed, BookmarkTagFeed
+
+urlpatterns = patterns('',
+	url(r'feed/$',
+		view = BookmarkFeed(),
+		name = 'bookmarks_bookmark_feed',
+	),
+	url(r'tag/(?P<slug>(.*))/feed/$',
+		view = BookmarkTagFeed,
+		name = 'bookmarks_bookmark_tag_feed'
+	)
+)
+
+urlpatterns += patterns('bookmarks.views',
 	url(r'^url/$',
 		view = 'url_redirect',
 		name = 'bookmark_url_redirect',

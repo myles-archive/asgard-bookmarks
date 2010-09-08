@@ -27,7 +27,6 @@ class Bookmark(models.Model):
 	title = models.CharField(_('title'), max_length=1000)
 	body = models.TextField(_('body'), null=True, blank=True)
 	url = models.URLField(_('URL'), max_length=1000)
-	tags = TaggableManager()
 	
 	author = models.ForeignKey(User, verbose_name=_('author'))
 	
@@ -36,6 +35,8 @@ class Bookmark(models.Model):
 	date_modified = models.DateTimeField(_('date modified'), auto_now=True)
 	
 	comments = generic.GenericRelation(Comment, object_id_field='object_pk')
+	
+	tags = TaggableManager()
 	
 	if MarkupField:
 		markup = MarkupField(default='none')

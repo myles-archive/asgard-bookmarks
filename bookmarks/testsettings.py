@@ -13,6 +13,7 @@ INSTALLED_APPS = [
 	'django.contrib.sitemaps',
 	
 	'taggit',
+	'django_markup',
 	
 	'bookmarks',
 ]

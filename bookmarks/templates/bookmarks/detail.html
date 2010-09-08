@@ -1,5 +1,7 @@
 {% extends "bookmarks/base_bookmarks.html" %}
 
+{% load markup_tags %}
+
 {% block title %}{{ block.super }}: {{ bookmark.title }}{% endblock %}
 
 {% block content_title %}
@@ -16,7 +18,7 @@
 {% endblock %}
 
 {% block content %}
-	{% if bookmark.body %}<div>{{ bookmark.body_html|safe }}</div>{% endif %}
+	{% if bookmark.body %}<div>{{ bookmark.body|apply_markup:bookmark.markup }}</div>{% endif %}
 	
 	{% if related %}
 		<div class="related">

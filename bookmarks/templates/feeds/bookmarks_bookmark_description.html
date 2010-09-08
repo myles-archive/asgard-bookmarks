@@ -1,4 +1,6 @@
-{{ obj.body_html|safe }}
+{% load markup_tags %}
+
+{{ obj.body|apply_markup:obj.markup }}
 
 {% if obj.tag_set.all %}
 <p>

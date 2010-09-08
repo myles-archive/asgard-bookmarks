@@ -1,3 +1,5 @@
+{% load markup_tags %}
+
 <div id="bookmark-{{ bookmark.uuid }}">
 	<h3><a href="{{ bookmark.url }}">{{ bookmark.title }}</a>&nbsp;<a href="{{ bookmark.get_absolute_url }}">#</a></h3>
 	<div class="meta">
@@ -9,5 +11,5 @@
 			{% for tag in bookmark.tags.all %}<a href="{% url bookmark_tag_detail tag.slug|urlencode %}" rel="tag">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}{% ifequal forloop.revcounter0 1 %} and {% endifequal %}{% endfor %}
 		</p>{% endif %}
 	</div>
-	{% if bookmark.body_html %}<div class="entry-content">{{ bookmark.body_html|safe }}</div>{% endif %}
+	{% if bookmark.body %}<div class="entry-content">{{ bookmark.body|apply_markup:bookmark.markup }}</div>{% endif %}
 </div>

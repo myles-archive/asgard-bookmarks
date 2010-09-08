@@ -15,14 +15,17 @@ from django.db.models.signals import post_save, post_delete
 
 from taggit.managers import TaggableManager
 
-from asgard.utils.db.fields import MarkupTextField
+try:
+	from django_markup.fields import MarkupField
+except ImportError:
+	MarkupField = False
 
 from bookmarks.managers import BookmarkManager
 
 class Bookmark(models.Model):
 	uuid = models.CharField(_('UUID'), max_length=36, unique=True)
 	title = models.CharField(_('title'), max_length=1000)
-	body = MarkupTextField(_('body'), null=True, blank=True)
+	body = models.TextField(_('body'), null=True, blank=True)
 	url = models.URLField(_('URL'), max_length=1000)
 	tags = TaggableManager()
 	
@@ -33,6 +36,9 @@ class Bookmark(models.Model):
 	date_modified = models.DateTimeField(_('date modified'), auto_now=True)
 	
 	comments = generic.GenericRelation(Comment, object_id_field='object_pk')
+	
+	if MarkupField:
+		markup = MarkupField(default='none')
 	
 	objects = BookmarkManager()
 	
@@ -49,6 +55,7 @@ class Bookmark(models.Model):
 	def save(self, **kwargs):
 		uuid = uuid3(NAMESPACE_URL, str(self.url))
 		self.uuid = str(uuid)
+		
 		super(Bookmark, self).save(**kwargs)
 	
 	def __unicode__(self):

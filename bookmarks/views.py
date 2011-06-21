@@ -10,16 +10,17 @@ from django.core import urlresolvers
 
 from bookmarks.forms import STOP_WORDS, BookmarksSearchForm
 from bookmarks.models import Bookmark
+from bookmarks.settings import BOOKMARKS_PAGINATE_BY
 
-def index(request, page=1, context={}, template_name='bookmarks/index.html'):
+def index(request, page=1, count=BOOKMARKS_PAGINATE_BY, context={}, template_name='bookmarks/index.html'):
 	"""
 	The bookmarks index page.
 	"""
 	bookmark_list = Bookmark.objects.all()
-	paginator = Paginator(bookmark_list, 20)
+	paginator = Paginator(bookmark_list, int(request.GET.get('count', count)))
 	
 	try:
-		bookmarks = paginator.page(page)
+		bookmarks = paginator.page(int(request.GET.get('page', page)))
 	except (EmptyPage, InvalidPage):
 		bookmarks = paginator.page(paginator.num_pages)
 	
@@ -55,15 +56,15 @@ def tag_list(request, context={}, template_name='bookmarks/tag_list.html'):
 	
 	return render_to_response(template_name, context, context_instance=RequestContext(request))
 
-def tag_detail(request, slug, page=1, context={}, template_name='bookmarks/tag_detail.html'):
+def tag_detail(request, slug, page=1, count=BOOKMARKS_PAGINATE_BY, context={}, template_name='bookmarks/tag_detail.html'):
 	
 	tag = Bookmark.tags.get(slug=urllib.unquote(slug))
 	bookmark_list = Bookmark.objects.filter(tags__in=[tag])
 	
-	paginator = Paginator(bookmark_list, 20)
+	paginator = Paginator(bookmark_list, int(request.GET.get('count', count)))
 	
 	try:
-		bookmarks = paginator.page(page)
+		bookmarks = paginator.page(int(request.GET.get('page', page)))
 	except (EmptyPage, InvalidPage):
 		bookmarks = paginator.page(paginator.num_pages)
 	
@@ -85,7 +86,7 @@ def author_list(request, context={}, template_name='bookmarks/author_list.html')
 
 	return render_to_response(template_name, context, context_instance=RequestContext(request))
 
-def author_detail(request, username, page=1, count=5, context={}, template_name="bookmarks/author_detail.html"):
+def author_detail(request, username, page=1, count=BOOKMARKS_PAGINATE_BY, context={}, template_name="bookmarks/author_detail.html"):
 	try:
 		author = User.objects.get(username__iexact=username)
 	except User.DoesNotExist:

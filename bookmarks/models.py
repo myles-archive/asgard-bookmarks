@@ -8,6 +8,7 @@ except ImportError:
 from django.db import models
 from django.db.models import permalink
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.contrib.contenttypes import generic
 from django.contrib.comments.models import Comment
 from django.utils.translation import ugettext_lazy as _
@@ -40,6 +41,8 @@ class Bookmark(models.Model):
 	
 	if MarkupField:
 		markup = MarkupField(default='none')
+	
+	sites = models.ManyToManyField(Site, blank=True, null=True)
 	
 	objects = BookmarkManager()
 	

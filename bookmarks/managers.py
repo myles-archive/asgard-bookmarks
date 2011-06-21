@@ -3,12 +3,23 @@ import operator
 
 from django.db.models import Manager, Q
 
+from bookmarks.settings import BOOKMARKS_MULTIPLE_SITES
+
+if BOOKMARKS_MULTIPLE_SITES:
+	from django.contrib.sites.models import Site
+	current_site = Site.objects.get_current()
+else:
+	current_site = None
+
 class BookmarkManager(Manager):
 	"""
 	Same as above but for templates
 	"""
 	def get_query_set(self):
-		return super(BookmarkManager, self).get_query_set()
+		if current_site:
+			return super(BookmarkManager, self).get_query_set().filter(sites__in=[current_site,])
+		else:
+			return super(BookmarkManager, self).get_query_set()
 	
 	def published(self, **kwargs):
 		return self.get_query_set().filter(published__lte=datetime.now(), **kwargs)

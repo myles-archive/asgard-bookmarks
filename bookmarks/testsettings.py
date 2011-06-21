@@ -14,6 +14,7 @@ INSTALLED_APPS = [
 	
 	'taggit',
 	'django_markup',
+	'south',
 	
 	'bookmarks',
 ]

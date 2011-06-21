@@ -1,0 +1,15 @@
+{% extends "bookmarks/base_bookmarks.html" %}
+
+{% block title %}{{ block.super }}: Bookmarks Tags{% endblock %}
+
+{% block content_title %}
+	<h2>Bookmarks Authors</h2>
+{% endblock %}
+
+{% block content %}
+	<ul id="bookmarks_authors">
+		{% for author in authors %}
+			<li><a href="{% url bookmarks_authors_detail author.username %}">{{ author.get_full_name }}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}

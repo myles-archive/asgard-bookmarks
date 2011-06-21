@@ -4,6 +4,7 @@ import urllib
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.core import urlresolvers
 
@@ -72,6 +73,39 @@ def tag_detail(request, slug, page=1, context={}, template_name='bookmarks/tag_d
 		'is_archive': True,
 	})
 	
+	return render_to_response(template_name, context, context_instance=RequestContext(request))
+
+def author_list(request, context={}, template_name='bookmarks/author_list.html'):
+	authors = User.objects.filter(is_staff=True)
+
+	context.update({
+		'authors': authors,
+		'is_archive': True
+	})
+
+	return render_to_response(template_name, context, context_instance=RequestContext(request))
+
+def author_detail(request, username, page=1, count=5, context={}, template_name="bookmarks/author_detail.html"):
+	try:
+		author = User.objects.get(username__iexact=username)
+	except User.DoesNotExist:
+		raise Http404
+
+	bookmark_list = Bookmark.objects.published(author=author)
+
+	paginator = Paginator(bookmark_list, int(request.GET.get('count', count)))
+
+	try:
+		bookmarks = paginator.page(int(request.GET.get('page', page)))
+	except (EmptyPage, InvalidPage):
+		bookmarks = paginator.page(paginator.num_pages)
+
+	context.update({
+		'author': author,
+		'bookmarks': bookmarks,
+		'is_archive': True
+	})
+
 	return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 def search(request, context={}, template_name='bookmarks/search.html'):

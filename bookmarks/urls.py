@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-from bookmarks.feeds import BookmarkFeed, BookmarkTagFeed
+from bookmarks.feeds import BookmarkFeed, BookmarkTagFeed, BlogAuthorPostFeed
 
 urlpatterns = patterns('',
 	url(r'feed/$',
@@ -8,8 +8,12 @@ urlpatterns = patterns('',
 		name = 'bookmarks_bookmark_feed',
 	),
 	url(r'tag/(?P<slug>(.*))/feed/$',
-		view = BookmarkTagFeed,
+		view = BookmarkTagFeed(),
 		name = 'bookmarks_bookmark_tag_feed'
+	),
+	url(r'author/(?P<username>[-\w]+)/feed/$',
+		view = BlogAuthorPostFeed(),
+		name = 'bookmarks_bookmark_author_feed'
 	)
 )
 
@@ -29,6 +33,18 @@ urlpatterns += patterns('bookmarks.views',
 	url(r'^tag/$',
 		view = 'tag_list',
 		name = 'bookmark_tag_list'
+	),
+	url(r'^author/(?P<username>(.*))/(?P<page>\d+)/$',
+		view = 'author_detail',
+		name = 'bookmarks_authors_detail_paginated',
+	),
+	url(r'^author/(?P<username>(.*))/$',
+		view = 'author_detail',
+		name = 'bookmarks_authors_detail',
+	),
+	url(r'^author/$',
+		view = 'author_list',
+		name = 'bookmarks_author_list'
 	),
 	url(r'^search/$',
 		view = 'search',

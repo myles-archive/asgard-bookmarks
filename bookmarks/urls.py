@@ -3,15 +3,15 @@ from django.conf.urls.defaults import *
 from bookmarks.feeds import BookmarkFeed, BookmarkTagFeed, BlogAuthorPostFeed
 
 urlpatterns = patterns('',
-	url(r'feed/$',
+	url(r'^feed/$',
 		view = BookmarkFeed(),
 		name = 'bookmarks_bookmark_feed',
 	),
-	url(r'tag/(?P<slug>(.*))/feed/$',
+	url(r'^tag/(?P<slug>(.*))/feed/$',
 		view = BookmarkTagFeed(),
 		name = 'bookmarks_bookmark_tag_feed'
 	),
-	url(r'author/(?P<username>[-\w]+)/feed/$',
+	url(r'^author/(?P<username>[-\w]+)/feed/$',
 		view = BlogAuthorPostFeed(),
 		name = 'bookmarks_bookmark_author_feed'
 	)

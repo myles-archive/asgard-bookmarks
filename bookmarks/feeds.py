@@ -89,6 +89,3 @@ class BlogAuthorPostFeed(BaseFeed):
 	
 	def items(self, obj):
 		return Post.objects.published(author=obj)
-	
-	def item_link(self, item):
-		return item.get_absolute_url()

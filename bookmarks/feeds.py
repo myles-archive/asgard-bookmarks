@@ -53,10 +53,8 @@ class BookmarkFeed(BaseFeed):
 		return Bookmark.objects.published()[:10]
 
 class BookmarkTagFeed(BaseFeed):
-	def get_object(self, bits):
-		if len(bits) != 1:
-			raise ObjectDoesNotExist
-		return Bookmark.tags.get(slug=bits[0])
+	def get_object(self, request, slug):
+		return Bookmark.tags.get(slug=slug)
 	
 	def title(self, obj):
 		_site = Site.objects.get_current()
@@ -71,11 +69,8 @@ class BookmarkTagFeed(BaseFeed):
 		return Bookmark.objects.filter(tags__in=[obj])
 
 class BlogAuthorPostFeed(BaseFeed):
-	def get_object(self, bits):
-		if len(bits) != 1:
-			raise FeedDoesNotExist
-		
-		return User.objects.filter(username_exact=bits[0], is_staff=True)
+	def get_object(self, request, username):
+		return User.objects.filter(username_exact=username, is_staff=True)
 	
 	def title(self, obj):
 		if obj.get_full_name():

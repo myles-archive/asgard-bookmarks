@@ -1,8 +1,12 @@
 DEBUG = True
 DEBUG_TEMPLATE = True
 SITE_ID = 1
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = '/tmp/asgard-bookmarks-devel.db'
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': '/tmp/asgard-bookmarks-devel.db'
+	}
+}
 INSTALLED_APPS = [
 	'django.contrib.auth',
 	'django.contrib.comments',
@@ -19,3 +23,4 @@ INSTALLED_APPS = [
 	'bookmarks',
 ]
 ROOT_URLCONF = 'bookmarks.testurls'
+SECRET_KEY = 'kz!=swngn%ifjrcru3rzovmhvbc@jlu3y5y#i=7%+--az%=+*%'

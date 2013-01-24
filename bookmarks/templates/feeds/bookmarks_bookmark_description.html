@@ -5,6 +5,6 @@
 {% if obj.tag_set.all %}
 <p>
 {% for tag in obj.tag_set.all %}
-	<a href="http://{{ site.domain }}{% url bookmark_tag_detail tag.name|urlencode %}" rel="tag">{{ tag }}</a>{% if not forloop.last %}, {% endif %}{% ifequal forloop.revcounter0 1 %} and {% endifequal %}{% endfor %}
+	<a href="http://{{ site.domain }}{% url 'bookmark_tag_detail' tag.name|urlencode %}" rel="tag">{{ tag }}</a>{% if not forloop.last %}, {% endif %}{% ifequal forloop.revcounter0 1 %} and {% endifequal %}{% endfor %}
 </p>
 {% endif %}

@@ -9,7 +9,7 @@
 {% block content %}
 	<ul id="bookmarks_tags" class="tag_cloud">
 		{% for tag in tags %}
-			<li><a href="{% url bookmark_tag_detail tag.slug|urlencode %}">{{ tag.name }}</a></li>
+			<li><a href="{% url 'bookmark_tag_detail' tag.slug|urlencode %}">{{ tag.name }}</a></li>
 		{% endfor %}
 	</ul>
 {% endblock %}

@@ -12,7 +12,7 @@
 			<span class="published" title="{{ bookmark.published }}">{{ bookmark.published|timesince }}</span> ago.
 		</p>
 		{% if bookmark.tags.all %}<p class="alt tags">
-			{% for tag in bookmark.tags.all %}<a href="{% url bookmark_tag_detail tag.slug|urlencode %}" rel="tag">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}{% ifequal forloop.revcounter0 1 %} and {% endifequal %}{% endfor %}
+			{% for tag in bookmark.tags.all %}<a href="{% url 'bookmark_tag_detail' tag.slug|urlencode %}" rel="tag">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}{% ifequal forloop.revcounter0 1 %} and {% endifequal %}{% endfor %}
 		</p>{% endif %}
 	</div>
 {% endblock %}

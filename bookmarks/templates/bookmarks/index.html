@@ -12,7 +12,7 @@
 	{% if has_other_pages %}
 		<ul id="pagination">
 			{% if bookmarks.has_previous %}
-				<li class="previous on"><a href="{% url bookmark_index_paginated bookmarks.previous_page_number %}" title="Page {{ bookmarks.previous_page_number }}">Previous</a></li>
+				<li class="previous on"><a href="{% url 'bookmark_index_paginated' bookmarks.previous_page_number %}" title="Page {{ bookmarks.previous_page_number }}">Previous</a></li>
 			{% else %}
 				<li class="previous off">Previous</li>
 			{% endif %}
@@ -20,11 +20,11 @@
 				{% ifequal page bookmarks.page_number %}
 					<li class="active">{{ page }}</li>
 				{% else %}
-					<li><a href="{% url bookmark_index_paginated page %}">{{ page }}</a></li>
+					<li><a href="{% url 'bookmark_index_paginated' page %}">{{ page }}</a></li>
 				{% endifequal %}
 			{% endfor %}
 			{% if has_next %}
-				<li class="next on"><a href="{% url bookmark_index_paginated bookmarks.next_page_number %}" title="Page {{ bookmarks.next_page_number }}">Next</a></li>
+				<li class="next on"><a href="{% url 'bookmark_index_paginated' bookmarks.next_page_number %}" title="Page {{ bookmarks.next_page_number }}">Next</a></li>
 			{% else %}
 				<li class="next off">Next</li>
 			{% endif %}

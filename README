@@ -6,7 +6,7 @@ A simple Bookmark application for the Asgard CMS system.
 Requirements
 ************
 
- * Django_ >= 1.1
+ * Django_ >= 1.5
  * `Django Taggit`_ >= 0.4.0
 
 Optional Requirements

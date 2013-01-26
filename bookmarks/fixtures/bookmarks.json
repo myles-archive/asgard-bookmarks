@@ -5,7 +5,7 @@
 		"fields": {
 			"uuid": "e62dedb7-9975-336c-9f5a-18bd5a51aed5",
 			"title": "Google",
-			"url": "http://google.com/",
+			"url": "http://www.google.com/",
 			
 			"body": "Google is a Search Engine.",
 			"markup": "linebreaks",

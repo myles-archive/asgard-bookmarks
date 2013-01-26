@@ -87,6 +87,11 @@ class BookmarkTestCase(TestCase):
 		self.assertTrue(response['Location'].endswith(
 			reverse('admin:bookmarks_bookmark_change', args=[self.bookmark.id,])))
 		
-		response = self.client.get("%s?url=%s" % (reverse('bookmark_url_redirect'), urllib.quote('http://www.google.com/')))
+		response = self.client.get("%(endpoint)s?url=%(url)s&title=%(title)s&body=%(body)s" % {
+			'endpoint': reverse('bookmark_url_redirect'),
+			'url': urllib.quote('http://www.google.ca/'),
+			'title': urllib.quote('Google'),
+			'body': urllib.quote("A search engine.")
+		})
 		
 		self.assertEquals(response.status_code, 302)

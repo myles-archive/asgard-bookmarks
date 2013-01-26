@@ -8,9 +8,9 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.core import urlresolvers
 
-from bookmarks.forms import STOP_WORDS, BookmarksSearchForm
 from bookmarks.models import Bookmark
 from bookmarks.settings import BOOKMARKS_PAGINATE_BY
+from bookmarks.forms import STOP_WORDS, BookmarksSearchForm
 
 def index(request, page=1, count=BOOKMARKS_PAGINATE_BY, context={}, template_name='bookmarks/index.html'):
 	"""
@@ -141,6 +141,8 @@ def search(request, context={}, template_name='bookmarks/search.html'):
 
 def url_redirect(request):
 	url = request.GET.get('url')
+	title = request.GET.get('title', None)
+	body = request.GET.get('body', None)
 	
 	try:
 		bookmark = Bookmark.objects.get(url__startswith=urllib.unquote(url))
@@ -150,13 +152,20 @@ def url_redirect(request):
 	if bookmark:
 		if request.user.is_staff:
 			return HttpResponseRedirect(
-				urlresolvers.reverse('admin:bookmarks_bookmark_change', args=[bookmark.id,]))
+				urlresolvers.reverse(
+					'admin:bookmarks_bookmark_change',
+					args=[bookmark.id,]
+				)
+			)
 		else:
 			return HttpResponseRedirect(bookmark.get_absolute_url())
 	else:
 		if request.user.is_staff:
-			return HttpResponseRedirect(
-				"%s?url=%s" % (urlresolvers.reverse('admin:bookmarks_bookmark_add'),
-					url))
+			return HttpResponseRedirect("%(endpoint)s?_popup=1&url=%(url)s&title=%(title)s&body=%(body)s" % {
+				'endpoint': urlresolvers.reverse('admin:bookmarks_bookmark_add'),
+				'url': url,
+				'title': title,
+				'body': body,
+			})
 		else:
 			raise Http404

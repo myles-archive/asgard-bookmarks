@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.core import urlresolvers
 
+from taggit.models import Tag
+
 from bookmarks.models import Bookmark
 from bookmarks.settings import BOOKMARKS_PAGINATE_BY
 from bookmarks.forms import STOP_WORDS, BookmarksSearchForm
@@ -57,8 +59,11 @@ def tag_list(request, context={}, template_name='bookmarks/tag_list.html'):
 	return render_to_response(template_name, context, context_instance=RequestContext(request))
 
 def tag_detail(request, slug, page=1, count=BOOKMARKS_PAGINATE_BY, context={}, template_name='bookmarks/tag_detail.html'):
+	try:
+		tag = Bookmark.tags.get(slug=urllib.unquote(slug))
+	except Tag.DoesNotExist:
+		raise Http404
 	
-	tag = Bookmark.tags.get(slug=urllib.unquote(slug))
 	bookmark_list = Bookmark.objects.filter(tags__in=[tag])
 	
 	paginator = Paginator(bookmark_list, int(request.GET.get('count', count)))

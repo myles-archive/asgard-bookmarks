@@ -15,28 +15,28 @@ from bookmarks.views import (
     BookmarkURLRedirectView,
 )
 
-from bookmarks.feeds import (
-    BookmarkFeed,
-    BookmarkTagFeed,
-    BlogAuthorPostFeed
-)
+# from bookmarks.feeds import (
+#     BookmarkFeed,
+#     BookmarkTagFeed,
+#     BlogAuthorPostFeed
+# )
+# 
+# urlpatterns = patterns('',
+# 	url(r'^feed/$',
+# 		view = BookmarkFeed(),
+# 		name = 'bookmarks_bookmark_feed',
+# 	),
+# 	url(r'^tag/(?P<slug>(.*))/feed/$',
+# 		view = BookmarkTagFeed(),
+# 		name = 'bookmarks_bookmark_tag_feed'
+# 	),
+# 	url(r'^author/(?P<username>[-\w]+)/feed/$',
+# 		view = BlogAuthorPostFeed(),
+# 		name = 'bookmarks_bookmark_author_feed'
+# 	)
+# )
 
-urlpatterns = patterns('',
-	url(r'^feed/$',
-		view = BookmarkFeed(),
-		name = 'bookmarks_bookmark_feed',
-	),
-	url(r'^tag/(?P<slug>(.*))/feed/$',
-		view = BookmarkTagFeed(),
-		name = 'bookmarks_bookmark_tag_feed'
-	),
-	url(r'^author/(?P<username>[-\w]+)/feed/$',
-		view = BlogAuthorPostFeed(),
-		name = 'bookmarks_bookmark_author_feed'
-	)
-)
-
-urlpatterns += patterns('bookmarks.views',
+urlpatterns = patterns('bookmarks.views',
 	url(r'^url/$',
 		view = BookmarkURLRedirectView.as_view(),
 		name = 'bookmark_url_redirect',

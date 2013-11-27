@@ -1,8 +1,7 @@
-from django.conf.urls import *
 from django.contrib import admin
+from django.conf.urls import patterns, url, include
 
 from bookmarks.sitemaps import BookmarkSitemap, BookmarkTagSitemap
-from bookmarks.feeds import BookmarkFeed, BookmarkTagFeed
 
 admin.autodiscover()
 

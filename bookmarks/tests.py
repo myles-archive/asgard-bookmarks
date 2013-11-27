@@ -5,7 +5,6 @@ from django.test import TestCase
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
-from django.contrib.sites.models import Site
 
 from bookmarks.models import Bookmark
 
@@ -21,8 +20,6 @@ class BookmarkTestCase(TestCase):
         self.bookmark = Bookmark.objects.get(pk=1)
         
         self.bookmark.tags.add('Myles Braithwaite', 'Person')
-        
-        self.site = Site(id=settings.SITE_ID, domain="example.com", name="example.com").save()
         
         self.client = Client()
     
@@ -67,14 +64,6 @@ class BookmarkTestCase(TestCase):
     def testTagPagnationDoesNotExist(self):
         tag = self.bookmark.tags.all()[0]
         response = self.client.get(reverse('bookmark_tag_detail_paginated', args=[tag.slug, 999]))
-        self.assertEquals(response.status_code, 200)
-    
-    def testBookmarkFeed(self):
-        response = self.client.get(reverse('bookmarks_bookmark_feed'))
-        self.assertEquals(response.status_code, 200)
-    
-    def testBookmarkTagFeed(self):
-        response = self.client.get(reverse('bookmarks_bookmark_tag_feed', args=['person']))
         self.assertEquals(response.status_code, 200)
     
     def testBookmarkSitemap(self):

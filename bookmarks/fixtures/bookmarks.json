@@ -34,5 +34,203 @@
 			"date_added": "2009-07-31",
 			"date_modified": "2009-07-31"
 		}
+	},
+	{
+		"pk": 3,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "ef1e23b8-358c-320d-98de-0feacfca2007",
+			"title": "Bing",
+			"url": "http://bing.com/",
+			
+			"body": "Bing is a Search Engine.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
+	},
+	{
+		"pk": 4,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "c236fffb-49ee-3ddf-8f2b-0c061951d113",
+			"title": "Myles Braithwaite",
+			"url": "http://mylesbraithwaite.com/",
+			
+			"body": "Myles Braithwaite's homepage.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
+	},
+	{
+		"pk": 5,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "df4e3101-8863-395a-b025-18459019e10d",
+			"title": "Myles B. Tumblr",
+			"url": "http://tumblr.mylesbraithwaite.com/",
+			
+			"body": "Myles Braithwaite's Tumblr.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
+	},
+	{
+		"pk": 5,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "ec3af3ed-60cc-35bc-8f3b-2f151eb30d24",
+			"title": "Braithwaite Corp.",
+			"url": "http://braithwaitecorp.com/",
+			
+			"body": "Braithwaite Corp.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
+	},
+	{
+		"pk": 6,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "773536a8-4b7b-383d-9106-697d4d366254",
+			"title": "Example",
+			"url": "http://example.com/",
+			
+			"body": "This is an example website.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
+	},
+	{
+		"pk": 7,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "d704cd7f-7d41-36c8-ab7e-fd32b0fe94e1",
+			"title": "Example",
+			"url": "http://example.com/1/",
+			
+			"body": "This is an example website.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
+	},
+	{
+		"pk": 8,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "7bff17d9-db43-3d81-8aa5-8bb5cdd95e80",
+			"title": "Example",
+			"url": "http://example.com/2/",
+			
+			"body": "This is an example website.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
+	},
+	{
+		"pk": 9,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "491380eb-67d3-3191-ab22-63ad0a18fdd2",
+			"title": "Example",
+			"url": "http://example.com/3/",
+			
+			"body": "This is an example website.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
+	},
+	{
+		"pk": 10,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "8dce0166-19c3-3c84-bfcc-687f5b71326e",
+			"title": "Example",
+			"url": "http://example.com/4/",
+			
+			"body": "This is an example website.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
+	},
+	{
+		"pk": 11,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "cbd4f157-9dca-36f1-beae-951116e941d9",
+			"title": "Example",
+			"url": "http://example.com/5/",
+			
+			"body": "This is an example website.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
+	},
+	{
+		"pk": 12,
+		"model": "bookmarks.bookmark",
+		"fields": {
+			"uuid": "f10844c4-1fd2-34d8-a70c-6b76cbd7fe11",
+			"title": "Example",
+			"url": "http://example.com/6/",
+			
+			"body": "This is an example website.",
+			"markup": "linebreaks",
+			
+			"author": 1,
+			
+			"published": "2013-08-27",
+			"date_added": "2013-08-27",
+			"date_modified": "2013-08-27"
+		}
 	}
 ]

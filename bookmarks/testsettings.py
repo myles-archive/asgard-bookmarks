@@ -25,3 +25,6 @@ INSTALLED_APPS = [
 ROOT_URLCONF = 'bookmarks.testurls'
 SECRET_KEY = 'kz!=swngn%ifjrcru3rzovmhvbc@jlu3y5y#i=7%+--az%=+*%'
 BOOKMARKS_PAGINATE_BY = 5
+SOUTH_MIGRATION_MODULES = {
+	'taggit': 'taggit.south_migrations',
+}

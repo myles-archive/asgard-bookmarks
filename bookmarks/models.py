@@ -6,6 +6,7 @@ except ImportError:
     from bookmarks.uuid import NAMESPACE_URL, uuid3
 
 from django.db import models
+from django.utils.text import slugify
 from django.db.models import permalink
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
@@ -53,6 +54,10 @@ class Bookmark(models.Model):
 		ordering = ('-published',)
 	
 	@property
+	def slug(self):
+		return slugify(self.title)
+	
+	@property
 	def url_safe(self):
 		return quote_plus(self.url)
 	
@@ -69,6 +74,7 @@ class Bookmark(models.Model):
 	def get_absolute_url(self):
 		return ('bookmark_detail', None, {
 			'uuid':	self.uuid,
+			'slug': self.slug,
 		})
 	
 	def get_internal_url(self):
